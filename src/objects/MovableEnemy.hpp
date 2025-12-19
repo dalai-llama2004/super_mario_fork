@@ -7,9 +7,9 @@
 #include "speed.hpp"
 
 namespace biv {
-	class Enemy : public RectMapMovableAdapter, public Movable, public Collisionable {
+	class MovableEnemy : public RectMapMovableAdapter, public Movable, public Collisionable {
 		public:
-			Enemy(const Coord& top_left, const int width, const int height);
+			MovableEnemy(const Coord& top_left, const int width, const int height);
 
 			Rect get_rect() const noexcept override;
 			Speed get_speed() const noexcept override;
