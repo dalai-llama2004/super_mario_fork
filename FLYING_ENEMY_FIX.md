@@ -19,8 +19,8 @@ this->top_left.y = base_y;            // Enemy positioned at y=-1
 
 **Fixed code:**
 ```cpp
-base_y = top_left.y;                  // If spawn is y=5, base_y = 5
-this->top_left.y = base_y - FLIGHT_HEIGHT;  // Enemy positioned at y=-1 (hovering above)
+base_y = top_left.y;                        // If spawn is y=5, base_y = 5 (ground level)
+this->top_left.y = base_y - FLIGHT_HEIGHT;  // Enemy at y=-1 (6 units above ground)
 ```
 
 ### Bug 2: Gravity Application
