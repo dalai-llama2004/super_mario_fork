@@ -57,5 +57,7 @@ void FlyableEnemy::move_vertically() noexcept {
 	// They hover at a fixed height above their base platform
 	// Keep vspeed at 0 to prevent falling
 	vspeed = 0;
+	// Update position (no change since vspeed is 0, but maintains contract)
+	top_left.y += vspeed;
 }
 
