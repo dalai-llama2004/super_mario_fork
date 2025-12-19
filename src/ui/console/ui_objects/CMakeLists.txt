@@ -1,7 +1,9 @@
 target_sources(${PROJECT_NAME}
 	PRIVATE
 		console_box.cpp
-		console_enemy.cpp
+		console_movable_enemy.cpp
+		console_flyable_enemy.cpp
+		console_jumpable_enemy.cpp
 		console_full_box.cpp
 		console_mario.cpp
 		console_money.cpp
