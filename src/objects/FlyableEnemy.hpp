@@ -10,6 +10,8 @@ namespace biv {
 	class FlyableEnemy : public RectMapMovableAdapter, public Movable, public Collisionable {
 		private:
 			static constexpr float FLIGHT_HEIGHT = 6.0f;
+			static constexpr float MIN_Y = 0.0f;  // Top boundary of the map
+			static constexpr float MAX_Y = 37.0f; // Bottom boundary (40 - 3 for water area)
 			float base_y;
 			
 		public:

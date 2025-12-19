@@ -10,6 +10,11 @@ FlyableEnemy::FlyableEnemy(const Coord& top_left, const int width, const int hei
 	hspeed = 0.2;
 	base_y = top_left.y;
 	this->top_left.y = base_y - FLIGHT_HEIGHT;
+	
+	// Ensure flying enemy doesn't spawn above the screen top boundary
+	if (this->top_left.y < MIN_Y) {
+		this->top_left.y = MIN_Y;
+	}
 }
 
 biv::Rect FlyableEnemy::get_rect() const noexcept {
@@ -59,5 +64,12 @@ void FlyableEnemy::move_vertically() noexcept {
 	vspeed = 0;
 	// Update position (no change since vspeed is 0, but maintains contract)
 	top_left.y += vspeed;
+	
+	// Enforce vertical boundaries to prevent escaping the playable area
+	if (top_left.y < MIN_Y) {
+		top_left.y = MIN_Y;
+	} else if (top_left.y > MAX_Y) {
+		top_left.y = MAX_Y;
+	}
 }
 
