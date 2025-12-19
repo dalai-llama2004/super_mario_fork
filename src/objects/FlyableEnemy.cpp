@@ -8,8 +8,8 @@ FlyableEnemy::FlyableEnemy(const Coord& top_left, const int width, const int hei
 	: RectMapMovableAdapter(top_left, width, height) {
 	vspeed = 0;
 	hspeed = 0.2;
-	base_y = top_left.y - FLIGHT_HEIGHT;
-	this->top_left.y = base_y;
+	base_y = top_left.y;
+	this->top_left.y = base_y - FLIGHT_HEIGHT;
 }
 
 biv::Rect FlyableEnemy::get_rect() const noexcept {
@@ -39,7 +39,7 @@ void FlyableEnemy::process_vertical_static_collision(Rect* obj) noexcept {
 	// и побежать в обратную сторону.
 	// Для летающего врага проверяем на уровне базовой платформы
 	float saved_y = top_left.y;
-	top_left.y = base_y + FLIGHT_HEIGHT;
+	top_left.y = base_y;
 	top_left.x += hspeed;
 	
 	bool has_platform = has_collision(obj);
@@ -50,5 +50,12 @@ void FlyableEnemy::process_vertical_static_collision(Rect* obj) noexcept {
 	if (!has_platform) {
 		process_horizontal_static_collision(obj);
 	}
+}
+
+void FlyableEnemy::move_vertically() noexcept {
+	// Flying enemies maintain their flight height and don't fall due to gravity
+	// They hover at a fixed height above their base platform
+	// Keep vspeed at 0 to prevent falling
+	vspeed = 0;
 }
 
