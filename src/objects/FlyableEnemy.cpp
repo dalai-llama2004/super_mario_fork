@@ -42,11 +42,13 @@ void FlyableEnemy::process_vertical_static_collision(Rect* obj) noexcept {
 	top_left.y = base_y + FLIGHT_HEIGHT;
 	top_left.x += hspeed;
 	
-	if (!has_collision(obj)) {
-		process_horizontal_static_collision(obj);
-	} else {
-		top_left.x -= hspeed;
-	}
+	bool has_platform = has_collision(obj);
 	
+	top_left.x -= hspeed;
 	top_left.y = saved_y;
+	
+	if (!has_platform) {
+		process_horizontal_static_collision(obj);
+	}
 }
+
